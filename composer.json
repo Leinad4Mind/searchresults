@@ -1,7 +1,7 @@
 {
 	"name": "forumhulp/searchresults",
 	"type": "phpbb-extension",
-	"description": "searchresults.",
+	"description": "Search Results logs the searchwords yur visitors searched for. It will totalize words and show you first and last time your visitor searched for the words. A cron job will maximize the words in the archive.",
 	"homepage": "http://forumhulp.com",
 	"version": "3.1.0.RC4",
 	"keywords": ["forumhulp", "phpbb", "extension", "add user", "pb"],
@@ -26,7 +26,7 @@
 		"version-check": {
 			"host": "forumhulp.com",
 			"directory": "/ext",
-			"filename": "index.php?id=33"
+			"filename": "index.php?id=38"
 		}
 	}
 }

@@ -45,13 +45,32 @@ class listener implements EventSubscriberInterface
 	static public function getSubscribedEvents()
 	{
 		return array(
-			'core.search_results_modify_search_title'	=> 'search_result'
+			'core.search_results_modify_search_title'	=> 'search_result',
+			'core.acp_board_config_edit_add'			=> 'load_config_on_setup',
 		);
 	}
 
+	public function load_config_on_setup($event)
+	{
+		if ($event['mode'] == 'features')
+		{
+			$display_vars = $event['display_vars'];
+
+			$add_config_var['prune_searchresults'] =
+				array(
+					'lang' 		=> 'PRUNE_SEARCHRESULTS',
+					'validate'	=> 'int',
+					'type'		=> 'number:0:99',
+					'explain'	=> true
+				);
+			$display_vars['vars'] = phpbb_insert_config_array($display_vars['vars'], $add_config_var, array('after' =>'allow_quick_reply'));
+			$event['display_vars'] = array('title' => $display_vars['title'], 'vars' => $display_vars['vars']);
+		}
+	}
+	
 	public function search_result($event)
 	{
-		$sql = 'SELECT search_time, search_keywords, search_authors FROM tbl_search_results';
+		$sql = 'SELECT search_time, search_keywords, search_authors FROM ' . SEARCH_RESULTS_TABLE;
 		$result = $this->db->sql_query($sql);
 		while ($row = $this->db->sql_fetchrow($result))
 		{
@@ -74,6 +93,15 @@ class listener implements EventSubscriberInterface
 				$sql = 'UPDATE ' . $this->searchresults_table . ' SET hits = hits + 1, ' . $this->db->sql_build_array('UPDATE', $fields) . '
 						WHERE search_keywords = \'' . $this->db->sql_escape($row['search_keywords']) . '\'';
 			}
+			$this->db->sql_query($sql);
+		}
+		$sql = 'SELECT hits, last_time FROM ' . $this->searchresults_table . ' ORDER BY hits DESC LIMIT '. $this->config['prune_searchresults'] .', 1';
+		$result = $this->db->sql_query($sql);
+
+		$prune = $this->db->sql_fetchrow($result);
+		if ($prune)
+		{
+			$sql = 'DELETE FROM ' . $this->searchresults_table . ' WHERE hits < ' . $prune['hits'] . ' AND last_time < ' . $prune['last_time'];
 			$this->db->sql_query($sql);
 		}
 	}

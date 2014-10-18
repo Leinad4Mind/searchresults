@@ -18,5 +18,7 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
-	'ACP_SEARCHRESULTS'	=> 'Search result\'s log',
+	'ACP_SEARCHRESULTS'				=> 'Search result\'s log',
+	'PRUNE_SEARCHRESULTS'			=> 'Search Results',
+	'PRUNE_SEARCHRESULTS_EXPLAIN'	=> 'Max records in searchresults table'
 ));

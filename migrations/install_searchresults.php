@@ -55,6 +55,7 @@ class install_searchresults extends \phpbb\db\migration\migration
 	{
 		return array(
 			array('config.add', array('referrers_version', '3.1.0.RC5')),
+			array('config.add', array('prune_searchresults', 30)),
 			array('module.add', array(
 				'acp', 'ACP_FORUM_LOGS', array(
 					'module_basename'	=> '\forumhulp\searchresults\acp\searchresults_module',

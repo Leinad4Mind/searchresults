@@ -67,7 +67,7 @@ class listener implements EventSubscriberInterface
 			$event['display_vars'] = array('title' => $display_vars['title'], 'vars' => $display_vars['vars']);
 		}
 	}
-	
+
 	public function search_result($event)
 	{
 		$sql = 'SELECT search_time, search_keywords, search_authors FROM ' . SEARCH_RESULTS_TABLE;

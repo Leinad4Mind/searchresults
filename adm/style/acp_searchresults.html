@@ -48,7 +48,7 @@
 <tbody>
 <!-- BEGIN row -->
 	<!-- IF row.S_ROW_COUNT is even --><tr class="row1"><!-- ELSE --><tr class="row2"><!-- ENDIF -->
-	<td title="{row.SEARCHWORD}">{row.SEARCHWORD}</td>
+	<td title="{row.SEARCHWORD}"><a href="/search.php?keywords={row.SEARCHWORD}">{row.SEARCHWORD}</a></td>
 	<td style="text-align:center;">{row.HITS}</td>
 	<td style="text-align:center;">{row.FIRST}</td>
 	<td style="text-align:center;">{row.LAST}</td>

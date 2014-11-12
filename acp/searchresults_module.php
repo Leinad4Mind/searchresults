@@ -73,7 +73,7 @@ class searchresults_module
 
 			default:
 				$this->tpl_name	= 'acp_searchresults';
-				$this->page_title = 'ACP_REF_MANAGE';
+				$this->page_title = 'ACP_SR_MANAGE';
 				$this->ref_manage($id, $mode);
 
 			break;

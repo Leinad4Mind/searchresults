@@ -18,7 +18,7 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
-	'ACP_SEARCHRESULTS'	=> 'Search result\'s log',
+	'ACP_SEARCHRESULTS'	=> 'Search results log',
 
 	'ACP_SR_MANAGE'			=> 'Search results',
 	'ACP_SR_MANAGE_EXPLAIN'	=> 'Display a list of searchwords your visitors searched for.<br />You can sort on searchword, hits and first and last visit date. A job will delete records where last visit is older then x days, adjustable in Board features.',

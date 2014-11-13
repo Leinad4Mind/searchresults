@@ -27,10 +27,4 @@ $lang = array_merge($lang, array(
 	'REF_HITS'		=> 'Visits',
 	'REF_FIRST'		=> 'First visit',
 	'REF_LAST'		=> 'Latest visit',
-
-	'LOG_SR_REMOVED'		=> '<strong>Prune search results</strong><br />» Search results (%1$s),  %2$s records',
-	'LOG_SR_REMOVED_ALL'	=> '<strong>Purged search results</strong>',
-
-	'DELETE_REFERRERS_DAYS'			=> 'Referrers',
-	'DELETE_REFERRERS_DAYS_EXPLAIN'	=> 'Days after cron wil delete Search results. 0 will disable this cron.'
 ));

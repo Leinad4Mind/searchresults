@@ -134,7 +134,7 @@ class searchresults_module
 					$sql = 'DELETE FROM ' . $this->searchresults_table . $sql_where;
 					$db->sql_query($sql);
 
-					add_log('admin', 'LOG_SR_REMOVED', implode(', ', array_unique($host_list)), (int) $this->db->sql_affectedrows());
+					add_log('admin', 'LOG_SR_REMOVED', implode(', ', array_unique($host_list)), (int) $db->sql_affectedrows());
 				}
 				else if ($deleteall)
 				{

@@ -95,14 +95,17 @@ class listener implements EventSubscriberInterface
 			}
 			$this->db->sql_query($sql);
 		}
-		$sql = 'SELECT hits, last_time FROM ' . $this->searchresults_table . ' ORDER BY hits DESC LIMIT '. $this->config['prune_searchresults'] .', 1';
-		$result = $this->db->sql_query($sql);
-
-		$prune = $this->db->sql_fetchrow($result);
-		if ($prune)
+		if ($this->config['prune_searchresults'])
 		{
-			$sql = 'DELETE FROM ' . $this->searchresults_table . ' WHERE hits < ' . $prune['hits'] . ' AND last_time < ' . $prune['last_time'];
-			$this->db->sql_query($sql);
+			$sql = 'SELECT hits, last_time FROM ' . $this->searchresults_table . ' ORDER BY hits DESC LIMIT '. $this->config['prune_searchresults'] .', 1';
+			$result = $this->db->sql_query($sql);
+
+			$prune = $this->db->sql_fetchrow($result);
+			if ($prune)
+			{
+				$sql = 'DELETE FROM ' . $this->searchresults_table . ' WHERE hits < ' . $prune['hits'] . ' AND last_time < ' . $prune['last_time'];
+				$this->db->sql_query($sql);
+			}
 		}
 	}
 }

@@ -18,7 +18,10 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
-	'ACP_SEARCHRESULTS'				=> 'Search result\'s log',
+	'ACP_SEARCHRESULTS'				=> 'Search results log',
 	'PRUNE_SEARCHRESULTS'			=> 'Search Results',
-	'PRUNE_SEARCHRESULTS_EXPLAIN'	=> 'Max records in searchresults table'
+	'PRUNE_SEARCHRESULTS_EXPLAIN'	=> 'Max records in searchresults table, 0 will disable this function.',
+
+	'LOG_SR_REMOVED'		=> '<strong>Prune search results</strong><br />» Search results (%1$s),  %2$s records',
+	'LOG_SR_REMOVED_ALL'	=> '<strong>Purged search results</strong>',
 ));

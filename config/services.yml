@@ -8,6 +8,7 @@ services:
             - @config
             - @controller.helper
             - @user
+            - @request
             - @dbal.conn
             - @log
             - %core.root_path%

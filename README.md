@@ -1,7 +1,7 @@
 Search Results
 ===========
 
-Search Results logs the searchwords yur visitors searched for. It will totalize words and show you first and last time your visitor searched for the words. A cron job will maximize the words in the archive.
+Search Results logs the searchwords your visitors searched for. It will totalize words and show you first and last time your visitor searched for the words. A cron job will maximize the words in the archive.
 
 [![Build Status](https://travis-ci.org/ForumHulp/searchresults.svg?branch=master)](https://travis-ci.org/ForumHulp/searchresults)
 

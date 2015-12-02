@@ -70,9 +70,9 @@ class listener implements EventSubscriberInterface
 		{
 			if (strlen($word) <= $this->config['fulltext_native_min_chars'])
 			{
-				continue;	
+				continue;
 			}
-			
+
 			$sql = 'SELECT word_id FROM ' . SEARCH_WORDLIST_TABLE . ' WHERE word_text = "' . $word . '"';
 			$resulttemp = $this->db->sql_query($sql);
 			$found = ($rowtemp = $this->db->sql_fetchrow($resulttemp));
@@ -91,7 +91,7 @@ class listener implements EventSubscriberInterface
 					'first_time' => time(),
 				);
 				$sql = 'INSERT INTO ' . $this->searchresults_table . ' ' . $this->db->sql_build_array('INSERT', $fields);
-			} else 
+			} else
 			{
 				$sql = 'UPDATE ' . $this->searchresults_table . ' SET hits = hits + 1, ' . $this->db->sql_build_array('UPDATE', $fields) . '
 						WHERE search_keywords = "' . $word . '"';
@@ -126,7 +126,7 @@ class listener implements EventSubscriberInterface
 						WHERE search_keywords = \'' . $this->db->sql_escape($row['search_keywords']) . '\'';
 			}
 			$this->db->sql_query($sql);
-			
+
 		}
 		if ($this->config['prune_searchresults'])
 		{

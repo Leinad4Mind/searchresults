@@ -66,7 +66,7 @@ class listener implements EventSubscriberInterface
 		preg_match_all('#(?:[^\p{L}\p{N}*"()]|^)([+\-|]?(?:[\p{L}\p{N}*"()]+\'?)*[\p{L}\p{N}*"()])(?:[^\p{L}\p{N}*"()]|$)#u', $split_keywords, $matches);
 		$this->split_words = $matches[1];
 
-		foreach($this->split_words as $word)
+		foreach ($this->split_words as $word)
 		{
 			if (strlen($word) <= $this->config['fulltext_native_min_chars'])
 			{

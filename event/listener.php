@@ -73,11 +73,11 @@ class listener implements EventSubscriberInterface
 				continue;
 			}
 
-			$sql = 'SELECT word_id FROM ' . SEARCH_WORDLIST_TABLE . ' WHERE word_text = "' . $word . '"';
+			$sql = 'SELECT word_id FROM ' . SEARCH_WORDLIST_TABLE . ' WHERE word_text = "' . $this->db->sql_escape($word) . '"';
 			$resulttemp = $this->db->sql_query($sql);
 			$found = ($rowtemp = $this->db->sql_fetchrow($resulttemp));
 
-			$sql = 'SELECT search_keywords, last_time FROM ' . $this->searchresults_table . ' WHERE search_keywords = "' . $word . '"';
+			$sql = 'SELECT search_keywords, last_time FROM ' . $this->searchresults_table . ' WHERE search_keywords = "' . $this->db->sql_escape($word) . '"';
 			$result = $this->db->sql_query($sql);
 			$used = ($row = $this->db->sql_fetchrow($result));
 			$this->db->sql_freeresult($result);

@@ -66,18 +66,18 @@ class listener implements EventSubscriberInterface
 		preg_match_all('#(?:[^\p{L}\p{N}*"()]|^)([+\-|]?(?:[\p{L}\p{N}*"()]+\'?)*[\p{L}\p{N}*"()])(?:[^\p{L}\p{N}*"()]|$)#u', $split_keywords, $matches);
 		$this->split_words = $matches[1];
 
-		foreach($this->split_words as $word)
+		foreach ($this->split_words as $word)
 		{
 			if (strlen($word) <= $this->config['fulltext_native_min_chars'])
 			{
 				continue;
 			}
 
-			$sql = 'SELECT word_id FROM ' . SEARCH_WORDLIST_TABLE . ' WHERE word_text = "' . $word . '"';
+			$sql = 'SELECT word_id FROM ' . SEARCH_WORDLIST_TABLE . " WHERE word_text = '" . $this->db->sql_escape($word) . "'";
 			$resulttemp = $this->db->sql_query($sql);
 			$found = ($rowtemp = $this->db->sql_fetchrow($resulttemp));
 
-			$sql = 'SELECT search_keywords, last_time FROM ' . $this->searchresults_table . ' WHERE search_keywords = "' . $word . '"';
+			$sql = 'SELECT search_keywords, last_time FROM ' . $this->searchresults_table . " WHERE search_keywords = '" . $this->db->sql_escape($word) . "'";
 			$result = $this->db->sql_query($sql);
 			$used = ($row = $this->db->sql_fetchrow($result));
 			$this->db->sql_freeresult($result);
@@ -106,7 +106,7 @@ class listener implements EventSubscriberInterface
 		$result = $this->db->sql_query($sql);
 		while ($row = $this->db->sql_fetchrow($result))
 		{
-			$sql = 'SELECT search_keywords, last_time FROM ' . $this->searchresults_table . ' WHERE search_keywords = \'' . $this->db->sql_escape($row['search_keywords']) . '\'';
+			$sql = 'SELECT search_keywords, last_time FROM ' . $this->searchresults_table . " WHERE search_keywords = '" . $this->db->sql_escape($row['search_keywords']) . "'";
 			$resulttemp = $this->db->sql_query($sql);
 			$found = ($rowtemp = $this->db->sql_fetchrow($resulttemp));
 			$this->db->sql_freeresult($resulttemp);
